@@ -100,7 +100,7 @@ class _CreateAccountState extends State<CreateAccount> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: AppColors.bgClr,
+          color: Color(0xfff2f5fa),
           height: height,
           width: width,
           child: Row(
@@ -152,7 +152,7 @@ class _CreateAccountState extends State<CreateAccount> {
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: height * 0.03),
+                        SizedBox(height: height * 0.05),
                         Center(
                           child: Stack(
                             children: [
@@ -186,11 +186,11 @@ class _CreateAccountState extends State<CreateAccount> {
                                     backgroundColor: AppColors.buttonColor,
                                     radius: 15,
                                     child: CircleAvatar(
-                                      backgroundColor: Colors.white,
+                                      backgroundColor: AppColors.buttonColor,
                                       radius: 13,
                                       child: Icon(
                                         Icons.camera_alt_outlined,
-                                        color: AppColors.buttonColor,
+                                        color: Colors.white,
                                         size: 15.0,
                                       ),
                                     ),
@@ -309,7 +309,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             ],
                           ),
                         ),
-                        SizedBox(height: height * 0.15),
+                        SizedBox(height: height * 0.05),
                         Consumer<AuthProvider>(
                           builder:(context,provider,child){
                             return
@@ -363,7 +363,7 @@ class _CreateAccountState extends State<CreateAccount> {
       child: Column(
         children: <Widget>[
           const Text(
-            "Choose document",
+            "Choose profile picture",
             style: TextStyle(
               fontSize: 20.0,
             ),

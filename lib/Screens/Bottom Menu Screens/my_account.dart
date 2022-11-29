@@ -97,13 +97,13 @@ class _MyAccountState extends State<MyAccount> {
                   color: Color(0xfff2f5fa),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 20.0, left: 20.0, right: 20.0),
+                        top: 20.0, left: 20.0, right: 20.0,bottom: 20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("My Account",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 22)),
+                                fontWeight: FontWeight.bold, fontSize: 30)),
                         SizedBox(height: h * 0.04),
                         Center(
                           child: Column(
@@ -165,10 +165,11 @@ class _MyAccountState extends State<MyAccount> {
                                     fontSize: 22,
                                     color: Colors.black),
                               ),
+                              SizedBox(height: h*0.01),
                               AutoSizeText(
                                 snapshot.data.docs[0]["phoneNo"].toString(),
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w400,
                                     fontSize: 18,
                                     color: Colors.grey),
                               ),
@@ -196,6 +197,7 @@ class _MyAccountState extends State<MyAccount> {
                                                   email: snapshot
                                                       .data.docs[0]["email"]
                                                       .toString(),
+                                                 imgUrl: snapshot.data.docs[0]["imageURL"].toString(),
                                                 )))
                                         .then((value) {
                                       setState(() {});
@@ -459,7 +461,7 @@ class _MyAccountState extends State<MyAccount> {
       child: Column(
         children: <Widget>[
           const Text(
-            "Choose document",
+            "Choose profile picture",
             style: TextStyle(
               fontSize: 20.0,
             ),

@@ -13,6 +13,7 @@ import 'package:photo_talk/Services/shared_pref.dart';
 class AuthProvider with ChangeNotifier {
   bool isLoading = false;
   bool isOTPLoading = false;
+  bool isUpdateLoading = false;
   var userId;
   var uId;
   var userPhoneNumber;
@@ -29,6 +30,12 @@ class AuthProvider with ChangeNotifier {
   Future<void> changeOTPLoading() async {
     print("inside");
     isOTPLoading = !isOTPLoading;
+    notifyListeners();
+  }
+
+  Future<void> changeUpdateLoading() async {
+    print("inside");
+    isUpdateLoading = !isUpdateLoading;
     notifyListeners();
   }
 
@@ -148,13 +155,25 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future updateUserInfo(
-      {required String name, required String email, context}) async {
+      {required String name,
+      required String email,
+      required iFile,
+      context}) async {
+    try {
+      changeUpdateLoading();
     final uidHere = await SharedPref().geUId();
+    var snapshot = await FirebaseStorage.instance
+        .ref()
+        .child('userProfileImg/imageName')
+        .putFile(iFile);
+
+    var iUrl = await snapshot.ref.getDownloadURL();
     print(userId);
     print("userId inside update");
     return await userCollection.doc(uidHere).update({
       "email": email,
       "name": name,
+      "imageURL": iUrl.toString()
     }).then((value) {
       Navigator.pop(context);
       Common().showCommonSnackbar(
@@ -164,6 +183,11 @@ class AuthProvider with ChangeNotifier {
       print("error");
       Common().showCommonSnackbar(context: context, msg: error.toString());
     });
+    } catch (e) {
+
+    } finally {
+      changeUpdateLoading();
+    }
   }
 
   Future updateUserProfileImage({required file, context}) async {
@@ -177,7 +201,6 @@ class AuthProvider with ChangeNotifier {
     return await userCollection
         .doc(uidHere)
         .update({"imageURL": downloadUrl.toString()});
-
   }
 
   static UploadTask? uploadFile(String destination, File file) {
