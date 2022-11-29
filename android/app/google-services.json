@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "102580749234",
+    "project_id": "photoandtalk-3c076",
+    "storage_bucket": "photoandtalk-3c076.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102580749234:android:80df3f4a9f803bbbd2daab",
+        "android_client_info": {
+          "package_name": "com.example.photo_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102580749234-gvbhcesog5rfglo20u7roo3u755orup8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.photo_talk",
+            "certificate_hash": "18b95d7162464f9118178a6cc07b7e8003006fd8"
+          }
+        },
+        {
+          "client_id": "102580749234-odvnupshjok4cirmav301op8srj15j52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsEF-0nyHQWa-K5kKKQCDIvr86Lf9-GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102580749234-odvnupshjok4cirmav301op8srj15j52.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

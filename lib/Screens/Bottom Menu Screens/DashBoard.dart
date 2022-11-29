@@ -1,0 +1,308 @@
+//@dart=2.9
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:photo_talk/Common/common_button.dart';
+import 'package:photo_talk/Common/snackbar.dart';
+import 'package:photo_talk/Common/text_styles.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/new_project1.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/pick_images_screen.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/search_screen.dart';
+import 'package:photo_talk/Services/provider.dart';
+import 'package:photo_talk/Widgets/app_colors.dart';
+import 'package:photo_talk/Widgets/responsive_widget.dart';
+import 'package:provider/provider.dart';
+
+class DashBoard extends StatefulWidget {
+  final userName;
+  const DashBoard({Key key, this.userName}) : super(key: key);
+
+  @override
+  State<DashBoard> createState() => _DashBoardState();
+}
+
+class _DashBoardState extends State<DashBoard> {
+  var code = '';
+  bool isButtonClicked = false;
+
+  bool clicked = false;
+  @override
+  Widget build(BuildContext context) {
+    final authProvider =
+        Provider.of<AuthProvider>(context, listen: false).getUserInfo();
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      body: SafeArea(
+        child: FutureBuilder<QuerySnapshot>(
+            future: authProvider,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  color: Color(0xfff2f5fa),
+                  height: height,
+                  width: width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.only(
+                              left: 12.0, right: 15.0, bottom: 12.0, top: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 20.0),
+                                    child: Image.asset(
+                                      "assets/images/photo-to-talk-logo.png",
+                                      height: height * 0.12,
+                                      width: width * 0.5,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                     setState(() {
+                                       clicked = true;
+                                     });
+                                    },
+                                    onDoubleTap: (){
+                                      setState(() {
+                                        clicked = false;
+                                      });
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: AppColors.buttonColor,
+                                      radius: 18,
+                                      child: CircleAvatar(
+                                        backgroundColor: AppColors.buttonColor,
+                                        radius: 16,
+                                        child: Icon(
+                                          Icons.inbox_outlined,
+                                          color: Colors.white,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // SizedBox(height: height * 0.01),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 18.0),
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "Hello, ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30,
+                                            color: Colors.black),
+                                      ),
+                                      TextSpan(
+                                        text: snapshot.data.docs[0]["name"]
+                                            .toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30,
+                                            color: AppColors.buttonColor,
+                                            overflow: TextOverflow.ellipsis),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              clicked == true ?
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: height * 0.02),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18.0),
+                                    child: Text(
+                                      "My Videos",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  buildSearchBar(width: width),
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                    buildMainDashboard(),
+                                ],
+                              )
+                              :
+                             noVideos()
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                print(snapshot.error);
+                return Center(
+                    child: Text("Error occurred", style: mainBoldHeading()));
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
+      ),
+    );
+  }
+
+  /// widget for search bar
+  Widget buildSearchBar({width}) {
+    return GestureDetector(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Container(
+          height: 51,
+          width: width,
+          decoration: BoxDecoration(
+            color: AppColors.buttonColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 24),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SearchScreen()));
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        size: 25,
+                        color: Colors.white,
+                      ))),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SearchScreen()));
+                },
+                child: SizedBox(
+                    width: 210,
+                    child: Text("Search videos",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ))),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildMainDashboard() {
+    Size size = MediaQuery.of(context).size;
+    return
+        //   recipes.isEmpty
+        //     ? Container(
+        //     height: size.height / 2,
+        //     child: Center(
+        //       child: Text(
+        //         Labels.noRecipe,
+        //         style: TextStyle(color: blackColor, fontSize: 20),
+        //       ),
+        //     )
+        // )
+        //     :
+        GridView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            physics: ScrollPhysics(),
+            itemCount: 6,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 18,
+                mainAxisExtent: size.height * 0.24),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                  onTap: () {},
+                  child: Column(children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                          left: 20, top: 10, bottom: 10, right: 5),
+                      width: 180.0,
+                      height: 180.0,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/video_placeholder.jpg",
+                          ),
+                        )
+                      ),
+                    )
+                  ]));
+            });
+  }
+
+  Widget noVideos() {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Center(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: SvgPicture.asset(
+              'assets/images/undraw_photos_re_pvh3.svg',
+              height: height * 0.55,
+              width: width,
+              //fit: BoxFit.fill,
+            ),
+          ),
+          SizedBox(height: height * 0.015),
+          Text(
+            "No video found",
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          SizedBox(height: height*0.01),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Get started by clicking on the",
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+              Text(
+                "red button below! ",
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
