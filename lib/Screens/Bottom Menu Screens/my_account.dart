@@ -101,343 +101,366 @@ class _MyAccountState extends State<MyAccount> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("My Account",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 30)),
-                        SizedBox(height: h * 0.04),
-                        Center(
-                          child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: AppColors.buttonColor,
-                                    radius: 70,
-                                    child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        radius: 68,
-                                        foregroundImage: snapshot
-                                                    .data.docs[0]["imageURL"]
-                                                    .toString() ==
-                                                null
-                                            ? FileImage(file) as ImageProvider
-                                            : NetworkImage(snapshot
-                                                .data.docs[0]["imageURL"]
-                                                .toString()),
-                                        backgroundImage: const AssetImage(
-                                            "assets/images/placeholder.png")),
-                                  ),
-                                  Positioned(
-                                    bottom: 4.0,
-                                    right: 4.0,
-                                    child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          builder: ((builder) =>
-                                              bottomSheet(context)),
-                                        );
-                                      },
-                                      child: const
-                                      CircleAvatar(
-                                        backgroundColor: AppColors.buttonColor,
-                                        radius: 20,
-                                        child: CircleAvatar(
-                                          backgroundColor:
-                                              AppColors.buttonColor,
-                                          radius: 18,
-                                          child: Icon(
-                                            Icons.camera_alt_outlined,
-                                            color: Colors.white,
-                                            size: 25.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                          children: [
+                            Text("My Account",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30)),
+                            CircleAvatar(
+                              backgroundColor: AppColors.buttonColor,
+                              radius: 10,
+                              child: CircleAvatar(
+                                backgroundColor: AppColors.buttonColor,
+                                radius: 8,
+                                child: Text("2",style: TextStyle(color: Colors.white,fontSize: 10),)
                               ),
-                              SizedBox(height: h * 0.02),
-                              AutoSizeText(
-                                snapshot.data.docs[0]["name"].toString(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    color: Colors.black),
-                              ),
-                              SizedBox(height: h*0.01),
-                              AutoSizeText(
-                                snapshot.data.docs[0]["phoneNo"].toString(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18,
-                                    color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              children: [
-                                SizedBox(height: h * 0.015),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) => EditProfile(
-                                                  name: snapshot
-                                                      .data.docs[0]["name"]
-                                                      .toString(),
-                                                  email: snapshot
-                                                      .data.docs[0]["email"]
-                                                      .toString(),
-                                                 imgUrl: snapshot.data.docs[0]["imageURL"].toString(),
-                                                )))
-                                        .then((value) {
-                                      setState(() {});
-                                    });
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Icon(Icons.person_outline_outlined,
-                                          color: AppColors.buttonColor),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      AutoSizeText(
-                                        "Edit",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                            color: Colors.grey[800]),
-                                      ),
-                                      const Spacer(),
-                                      const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 17,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: h * 0.015),
-                                const Divider(thickness: 1),
-                                SizedBox(height: h * 0.015),
-                                GestureDetector(
-                                  onTap: () {
-                                    // Navigator.of(context)
-                                    //     .push(MaterialPageRoute(
-                                    //     builder: (context) => CreateAccount(
-                                    //       phoneNumber: "11111111",
-                                    //     )));
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Icon(Icons.question_answer_outlined,
-                                          color: AppColors.buttonColor),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      AutoSizeText(
-                                        "FAQ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                            color: Colors.grey[800]),
-                                      ),
-                                      const Spacer(),
-                                      const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 17,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: h * 0.015),
-                                const Divider(thickness: 1),
-                                SizedBox(height: h * 0.015),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Icon(Icons.share_outlined,
-                                        color: AppColors.buttonColor),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    AutoSizeText(
-                                      "Share",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15,
-                                          color: Colors.grey[800]),
-                                    ),
-                                    const Spacer(),
-                                    const Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      color: AppColors.buttonColor,
-                                      size: 17,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: h * 0.015),
-                                const Divider(thickness: 1),
-                                SizedBox(height: h * 0.015),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SettingPage()));
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Icon(Icons.settings_outlined,
-                                          color: AppColors.buttonColor),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      AutoSizeText(
-                                        "Settings",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                            color: Colors.grey[800]),
-                                      ),
-                                      const Spacer(),
-                                      const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 17,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: h * 0.015),
-                                const Divider(thickness: 1),
-                                SizedBox(height: h * 0.015),
-                                GestureDetector(
-                                  onTap: () async {
-                                    Platform.isAndroid
-                                        ? await AndroidConfirmationDialog(
-                                            buttonLabel: "YES",
-                                            negButtonLabel: "NO",
-                                            dialogHeight: h * 0.12,
-                                            ctx: context,
-                                            buttonResponse: () async {
-                                              Navigator.pop(context);
-                                              await FirebaseAuth.instance
-                                                  .signOut()
-                                                  .then((value) {
-                                                Navigator.pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            const IntroSlides()),
-                                                    (Route<dynamic> route) =>
-                                                        false);
-                                              });
-                                            },
-                                            label:
-                                                "Are you sure you want to sign out?")
-                                        : await IosConfirmationDialog(
-                                            label:
-                                                "Are you sure you want to sign out",
-                                            negButtonLabel: "NO",
-                                            buttonLabel: "YES",
-                                            ctx: context,
-                                            buttonResponse: () async {
-                                              Navigator.pop(context);
-                                              await FirebaseAuth.instance
-                                                  .signOut()
-                                                  .then((value) {
-                                                Navigator.pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            const IntroSlides()),
-                                                    (Route<dynamic> route) =>
-                                                        false);
-                                              });
-                                            },
-                                          );
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Icon(Icons.logout,
-                                          color: AppColors.buttonColor),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      AutoSizeText(
-                                        "Logout",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                            color: Colors.grey[800]),
-                                      ),
-                                      const Spacer(),
-                                      const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 17,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: h * 0.015),
-                              ],
                             ),
-                          ),
+                          ],
                         ),
-                        SizedBox(height: h * 0.04)
+                     Expanded(
+                       child: SingleChildScrollView(
+                         child: Column(
+                           children: [
+                             SizedBox(height: h * 0.04),
+                             Center(
+                               child: Column(
+                                 children: [
+                                   Stack(
+                                     children: [
+                                       CircleAvatar(
+                                         backgroundColor: AppColors.buttonColor,
+                                         radius: 70,
+                                         child: CircleAvatar(
+                                             backgroundColor: Colors.white,
+                                             radius: 68,
+                                             foregroundImage: snapshot
+                                                 .data.docs[0]["imageURL"]
+                                                 .toString() ==
+                                                 null
+                                                 ? FileImage(file) as ImageProvider
+                                                 : NetworkImage(snapshot
+                                                 .data.docs[0]["imageURL"]
+                                                 .toString()),
+                                             backgroundImage: const AssetImage(
+                                                 "assets/images/placeholder.png")),
+                                       ),
+                                       Positioned(
+                                         bottom: 4.0,
+                                         right: 4.0,
+                                         child: InkWell(
+                                           onTap: () {
+                                             showModalBottomSheet(
+                                               context: context,
+                                               builder: ((builder) =>
+                                                   bottomSheet(context)),
+                                             );
+                                           },
+                                           child: const
+                                           CircleAvatar(
+                                             backgroundColor: AppColors.buttonColor,
+                                             radius: 20,
+                                             child: CircleAvatar(
+                                               backgroundColor:
+                                               AppColors.buttonColor,
+                                               radius: 18,
+                                               child: Icon(
+                                                 Icons.camera_alt_outlined,
+                                                 color: Colors.white,
+                                                 size: 25.0,
+                                               ),
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                   SizedBox(height: h * 0.02),
+                                   AutoSizeText(
+                                     snapshot.data.docs[0]["name"].toString(),
+                                     style: const TextStyle(
+                                         fontWeight: FontWeight.bold,
+                                         fontSize: 22,
+                                         color: Colors.black),
+                                   ),
+                                   SizedBox(height: h*0.01),
+                                   AutoSizeText(
+                                     snapshot.data.docs[0]["phoneNo"].toString(),
+                                     style: const TextStyle(
+                                         fontWeight: FontWeight.w400,
+                                         fontSize: 18,
+                                         color: Colors.grey),
+                                   ),
+                                 ],
+                               ),
+                             ),
+                             SizedBox(height: h * 0.04),
+                            // const Spacer(),
+                             Container(
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(15),
+                                   color: Colors.white),
+                               child: Padding(
+                                 padding: const EdgeInsets.all(12.0),
+                                 child: Column(
+                                   children: [
+                                     SizedBox(height: h * 0.015),
+                                     GestureDetector(
+                                       onTap: () {
+                                         Navigator.of(context)
+                                             .push(MaterialPageRoute(
+                                             builder: (context) => EditProfile(
+                                               name: snapshot
+                                                   .data.docs[0]["name"]
+                                                   .toString(),
+                                               email: snapshot
+                                                   .data.docs[0]["email"]
+                                                   .toString(),
+                                               imgUrl: snapshot.data.docs[0]["imageURL"].toString(),
+                                             )))
+                                             .then((value) {
+                                           setState(() {});
+                                         });
+                                       },
+                                       child: Row(
+                                         mainAxisAlignment:
+                                         MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                           const Icon(Icons.person_outline_outlined,
+                                               color: AppColors.buttonColor),
+                                           const SizedBox(
+                                             width: 20,
+                                           ),
+                                           AutoSizeText(
+                                             "Edit",
+                                             style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 15,
+                                                 color: Colors.grey[800]),
+                                           ),
+                                           const Spacer(),
+                                           const Icon(
+                                             Icons.arrow_forward_ios_outlined,
+                                             color: AppColors.buttonColor,
+                                             size: 17,
+                                           ),
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                         ],
+                                       ),
+                                     ),
+                                     SizedBox(height: h * 0.015),
+                                     const Divider(thickness: 1),
+                                     SizedBox(height: h * 0.015),
+                                     GestureDetector(
+                                       onTap: () {
+                                         // Navigator.of(context)
+                                         //     .push(MaterialPageRoute(
+                                         //     builder: (context) => CreateAccount(
+                                         //       phoneNumber: "11111111",
+                                         //     )));
+                                       },
+                                       child: Row(
+                                         mainAxisAlignment:
+                                         MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                           const Icon(Icons.question_answer_outlined,
+                                               color: AppColors.buttonColor),
+                                           const SizedBox(
+                                             width: 20,
+                                           ),
+                                           AutoSizeText(
+                                             "FAQ",
+                                             style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 15,
+                                                 color: Colors.grey[800]),
+                                           ),
+                                           const Spacer(),
+                                           const Icon(
+                                             Icons.arrow_forward_ios_outlined,
+                                             color: AppColors.buttonColor,
+                                             size: 17,
+                                           ),
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                         ],
+                                       ),
+                                     ),
+                                     SizedBox(height: h * 0.015),
+                                     const Divider(thickness: 1),
+                                     SizedBox(height: h * 0.015),
+                                     Row(
+                                       mainAxisAlignment:
+                                       MainAxisAlignment.spaceBetween,
+                                       children: [
+                                         const SizedBox(
+                                           width: 10,
+                                         ),
+                                         const Icon(Icons.share_outlined,
+                                             color: AppColors.buttonColor),
+                                         const SizedBox(
+                                           width: 20,
+                                         ),
+                                         AutoSizeText(
+                                           "Share",
+                                           style: TextStyle(
+                                               fontWeight: FontWeight.w600,
+                                               fontSize: 15,
+                                               color: Colors.grey[800]),
+                                         ),
+                                         const Spacer(),
+                                         const Icon(
+                                           Icons.arrow_forward_ios_outlined,
+                                           color: AppColors.buttonColor,
+                                           size: 17,
+                                         ),
+                                         const SizedBox(
+                                           width: 10,
+                                         ),
+                                       ],
+                                     ),
+                                     SizedBox(height: h * 0.015),
+                                     const Divider(thickness: 1),
+                                     SizedBox(height: h * 0.015),
+                                     GestureDetector(
+                                       onTap: () {
+                                         Navigator.of(context).push(
+                                             MaterialPageRoute(
+                                                 builder: (context) =>
+                                                 const SettingPage()));
+                                       },
+                                       child: Row(
+                                         mainAxisAlignment:
+                                         MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                           const Icon(Icons.settings_outlined,
+                                               color: AppColors.buttonColor),
+                                           const SizedBox(
+                                             width: 20,
+                                           ),
+                                           AutoSizeText(
+                                             "Settings",
+                                             style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 15,
+                                                 color: Colors.grey[800]),
+                                           ),
+                                           const Spacer(),
+                                           const Icon(
+                                             Icons.arrow_forward_ios_outlined,
+                                             color: AppColors.buttonColor,
+                                             size: 17,
+                                           ),
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                         ],
+                                       ),
+                                     ),
+                                     SizedBox(height: h * 0.015),
+                                     const Divider(thickness: 1),
+                                     SizedBox(height: h * 0.015),
+                                     GestureDetector(
+                                       onTap: () async {
+                                         Platform.isAndroid
+                                             ? await AndroidConfirmationDialog(
+                                             buttonLabel: "YES",
+                                             negButtonLabel: "NO",
+                                             dialogHeight: h * 0.12,
+                                             ctx: context,
+                                             buttonResponse: () async {
+                                               Navigator.pop(context);
+                                               await FirebaseAuth.instance
+                                                   .signOut()
+                                                   .then((value) {
+                                                 Navigator.pushAndRemoveUntil(
+                                                     context,
+                                                     MaterialPageRoute(
+                                                         builder: (BuildContext
+                                                         context) =>
+                                                         const IntroSlides()),
+                                                         (Route<dynamic> route) =>
+                                                     false);
+                                               });
+                                             },
+                                             label:
+                                             "Are you sure you want to sign out?")
+                                             : await IosConfirmationDialog(
+                                           label:
+                                           "Are you sure you want to sign out",
+                                           negButtonLabel: "NO",
+                                           buttonLabel: "YES",
+                                           ctx: context,
+                                           buttonResponse: () async {
+                                             Navigator.pop(context);
+                                             await FirebaseAuth.instance
+                                                 .signOut()
+                                                 .then((value) {
+                                               Navigator.pushAndRemoveUntil(
+                                                   context,
+                                                   MaterialPageRoute(
+                                                       builder: (BuildContext
+                                                       context) =>
+                                                       const IntroSlides()),
+                                                       (Route<dynamic> route) =>
+                                                   false);
+                                             });
+                                           },
+                                         );
+                                       },
+                                       child: Row(
+                                         mainAxisAlignment:
+                                         MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                           const Icon(Icons.logout,
+                                               color: AppColors.buttonColor),
+                                           const SizedBox(
+                                             width: 20,
+                                           ),
+                                           AutoSizeText(
+                                             "Logout",
+                                             style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 15,
+                                                 color: Colors.grey[800]),
+                                           ),
+                                           const Spacer(),
+                                           const Icon(
+                                             Icons.arrow_forward_ios_outlined,
+                                             color: AppColors.buttonColor,
+                                             size: 17,
+                                           ),
+                                           const SizedBox(
+                                             width: 10,
+                                           ),
+                                         ],
+                                       ),
+                                     ),
+                                     SizedBox(height: h * 0.015),
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             SizedBox(height: h * 0.04)
+                           ],
+                         ),
+                       ),
+                     )
                       ],
                     ),
                   ),

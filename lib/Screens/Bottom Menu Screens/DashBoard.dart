@@ -1,4 +1,5 @@
 //@dart=2.9
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -85,7 +86,7 @@ class _DashBoardState extends State<DashBoard> {
                                         backgroundColor: AppColors.buttonColor,
                                         radius: 16,
                                         child: Icon(
-                                          Icons.inbox_outlined,
+                                          Icons.mail_outline_outlined,
                                           color: Colors.white,
                                           size: 20.0,
                                         ),
@@ -130,7 +131,7 @@ class _DashBoardState extends State<DashBoard> {
                                     child: Text(
                                       "My Videos",
                                       style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 22,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -174,8 +175,9 @@ class _DashBoardState extends State<DashBoard> {
           height: 51,
           width: width,
           decoration: BoxDecoration(
-            color: AppColors.buttonColor,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.buttonColor)
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -190,18 +192,18 @@ class _DashBoardState extends State<DashBoard> {
                       icon: Icon(
                         Icons.search,
                         size: 25,
-                        color: Colors.white,
+                        color:AppColors.buttonColor,
                       ))),
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => SearchScreen()));
                 },
-                child: SizedBox(
+                child: Container(
                     width: 210,
                     child: Text("Search videos",
                         style: TextStyle(
-                          color: Colors.white,
+                          color:AppColors.buttonColor,
                           fontSize: 16,
                         ))),
               )
@@ -213,7 +215,8 @@ class _DashBoardState extends State<DashBoard> {
   }
 
   Widget buildMainDashboard() {
-    Size size = MediaQuery.of(context).size;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return
         //   recipes.isEmpty
         //     ? Container(
@@ -234,7 +237,7 @@ class _DashBoardState extends State<DashBoard> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 18,
-                mainAxisExtent: size.height * 0.24),
+                mainAxisExtent: height * 0.24),
             itemBuilder: (context, index) {
               return GestureDetector(
                   onTap: () {},
@@ -255,13 +258,45 @@ class _DashBoardState extends State<DashBoard> {
                         ],
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/video_placeholder.jpg",
-                          ),
-                        )
+                        // image: DecorationImage(
+                        //   image: AssetImage(
+                        //     "assets/images/video_placeholder.jpg",
+                        //   ),
+                        // )
                       ),
-                    )
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            //color: Colors.green,
+                            height:height*0.12,
+                            width: width,
+                            child: Image.asset(
+                              "assets/images/video_placeholder.jpg",
+                            ),
+                          ),
+                          Spacer(),
+                          AutoSizeText(
+                            "Test video",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,),
+                            minFontSize: 15,
+                            maxFontSize: 18,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          AutoSizeText(
+                            "a month ago",
+                            style: TextStyle(
+                              color: Colors.grey,),
+                            minFontSize: 10,
+                            maxFontSize: 12,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+
                   ]));
             });
   }

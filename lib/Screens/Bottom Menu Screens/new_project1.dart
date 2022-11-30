@@ -31,9 +31,11 @@ class _NewProject1State extends State<NewProject1> {
                     },
                     icon: Icon(Platform.isAndroid
                         ? Icons.arrow_back
-                        : Icons.arrow_back_ios),
+                        : Icons.arrow_back_ios,
+                    ),
+                    iconSize: 30,
                   ),
-                  Text("New Project", style: mainBoldHeading())
+                  Text("New Project", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold))
                 ],
               ),
               Spacer(),
@@ -42,6 +44,7 @@ class _NewProject1State extends State<NewProject1> {
                   Icon(
                     Icons.camera_outlined,
                     color: AppColors.buttonColor,
+                    size: 30,
                   ),
                   SizedBox(width: w * 0.1),
                   Expanded(
@@ -50,12 +53,13 @@ class _NewProject1State extends State<NewProject1> {
                           style: TextStyle(fontSize: 18)))
                 ],
               ),
-              SizedBox(height: h * 0.03),
+              SizedBox(height: h * 0.05),
               Row(
                 children: [
                   Icon(
                     Icons.move_down_outlined,
                     color: AppColors.buttonColor,
+                    size: 30,
                   ),
                   SizedBox(width: w * 0.1),
                   Expanded(
@@ -65,12 +69,13 @@ class _NewProject1State extends State<NewProject1> {
                   ))
                 ],
               ),
-              SizedBox(height: h * 0.03),
+              SizedBox(height: h * 0.05),
               Row(
                 children: [
                   Icon(
                     Icons.keyboard_voice_rounded,
                     color: AppColors.buttonColor,
+                    size: 30,
                   ),
                   SizedBox(width: w * 0.1),
                   Expanded(
@@ -84,10 +89,10 @@ class _NewProject1State extends State<NewProject1> {
                 buttonMethod: () {
 
                 },
-                borderRad: 15,
+                borderRad: 25,
                 loading: false,
                 w: w,
-                h: h * 0.08,
+                h: h * 0.07,
               ),
               Spacer(),
             ],

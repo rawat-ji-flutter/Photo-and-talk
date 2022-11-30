@@ -27,6 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor:  Color(0xfff2f5fa),
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(
@@ -68,7 +69,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         decoration: InputDecoration(
                             enabledBorder: const OutlineInputBorder(
                               borderSide: const BorderSide(
-                                  color: Colors.deepOrange, width: 1.5),
+                                  color: Color(0xffdb3535),
+                                  width: 1.5),
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(15.0),
                               ),

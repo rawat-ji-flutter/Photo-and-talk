@@ -1,6 +1,7 @@
 //@dart=2.9
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_talk/Common/common_button.dart';
@@ -223,16 +224,33 @@ class _EditProfileState extends State<EditProfile> {
                           borderRad: 25,
                           buttonMethod: () async {
                             if (_formKey.currentState.validate()) {
-                              provider.updateUserInfo(
-                                  name: nameController.text,
-                                  email: emailController.text,
-                                  iFile: file,
-                                  context: context);
+
+                              if (file != null) {
+                                print("here");
+                                var snapshot = await FirebaseStorage.instance
+                                    .ref()
+                                    .child('userProfileImg/imageName')
+                                    .putFile(file);
+
+                                var iUrl = await snapshot.ref.getDownloadURL();
+                                provider.updateUserInfo(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    iFile: iUrl.toString(),
+                                    context: context);
+                              } else {
+                                print("ggg");
+                                provider.updateUserInfo(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    iFile: widget.imgUrl,
+                                    context: context);
+                              }
                             }
                           },
                           h: height * 0.07,
                           w: width,
-                          title: "Submit",
+                          title: "Save Changes",
                           loading: provider.isUpdateLoading);
                     }),
                   ],

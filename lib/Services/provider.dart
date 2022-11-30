@@ -34,7 +34,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> changeUpdateLoading() async {
-    print("inside");
+    print("desired");
     isUpdateLoading = !isUpdateLoading;
     notifyListeners();
   }
@@ -162,18 +162,12 @@ class AuthProvider with ChangeNotifier {
     try {
       changeUpdateLoading();
     final uidHere = await SharedPref().geUId();
-    var snapshot = await FirebaseStorage.instance
-        .ref()
-        .child('userProfileImg/imageName')
-        .putFile(iFile);
 
-    var iUrl = await snapshot.ref.getDownloadURL();
-    print(userId);
-    print("userId inside update");
+
     return await userCollection.doc(uidHere).update({
       "email": email,
       "name": name,
-      "imageURL": iUrl.toString()
+      "imageURL": iFile
     }).then((value) {
       Navigator.pop(context);
       Common().showCommonSnackbar(
