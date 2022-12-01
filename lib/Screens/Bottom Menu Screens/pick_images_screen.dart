@@ -259,7 +259,7 @@ class _PickImagesScreenState extends State<PickImagesScreen> {
     );
   }
 
-  Future picksingleImage() async {
+  Future pickSingleImage() async {
     Navigator.pop(context);
     try {
       image = await _picker.pickImage(source: ImageSource.camera);
@@ -316,7 +316,7 @@ class _PickImagesScreenState extends State<PickImagesScreen> {
               ),
               onPressed: () {
                 selectedOption = 0;
-                picksingleImage();
+                pickSingleImage();
               },
               label: const Text("Camera"),
             ),

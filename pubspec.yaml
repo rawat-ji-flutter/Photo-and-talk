@@ -62,6 +62,8 @@ dependencies:
   country_calling_code_picker: ^2.0.1
   flutter_svg: ^1.1.6
   sn_progress_dialog:
+  reorderable_grid_view:
+  flutter_reorderable_grid_view:
 
 
 

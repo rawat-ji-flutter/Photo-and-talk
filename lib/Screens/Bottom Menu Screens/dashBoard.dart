@@ -80,14 +80,14 @@ class _DashBoardState extends State<DashBoard> {
                                       });
                                     },
                                     child: CircleAvatar(
-                                      backgroundColor: AppColors.buttonColor,
+                                      backgroundColor: Colors.white,
                                       radius: 18,
                                       child: CircleAvatar(
-                                        backgroundColor: AppColors.buttonColor,
+                                        backgroundColor: Colors.white,
                                         radius: 16,
                                         child: Icon(
                                           Icons.mail_outline_outlined,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                           size: 20.0,
                                         ),
                                       ),
@@ -104,7 +104,7 @@ class _DashBoardState extends State<DashBoard> {
                                       TextSpan(
                                         text: "Hello, ",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.w600,
                                             fontSize: 30,
                                             color: Colors.black),
                                       ),
@@ -112,9 +112,9 @@ class _DashBoardState extends State<DashBoard> {
                                         text: snapshot.data.docs[0]["name"]
                                             .toString(),
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.w600,
                                             fontSize: 30,
-                                            color: AppColors.buttonColor,
+                                            color: Colors.black,
                                             overflow: TextOverflow.ellipsis),
                                       ),
                                     ],
@@ -125,16 +125,6 @@ class _DashBoardState extends State<DashBoard> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: height * 0.02),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 18.0),
-                                    child: Text(
-                                      "My Videos",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
@@ -143,6 +133,9 @@ class _DashBoardState extends State<DashBoard> {
                                     height: height * 0.03,
                                   ),
                                     buildMainDashboard(),
+                                  SizedBox(
+                                    height: height * 0.05,
+                                  ),
                                 ],
                               )
                               :
@@ -176,8 +169,8 @@ class _DashBoardState extends State<DashBoard> {
           width: width,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.buttonColor)
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: Color(0xFFafafaf))
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -192,7 +185,7 @@ class _DashBoardState extends State<DashBoard> {
                       icon: Icon(
                         Icons.search,
                         size: 25,
-                        color:AppColors.buttonColor,
+                        color:Colors.grey,
                       ))),
               GestureDetector(
                 onTap: () {
@@ -203,9 +196,11 @@ class _DashBoardState extends State<DashBoard> {
                     width: 210,
                     child: Text("Search videos",
                         style: TextStyle(
-                          color:AppColors.buttonColor,
+                          color:Color(0xFFafafaf),
                           fontSize: 16,
-                        ))),
+                        )
+                    )
+                ),
               )
             ],
           ),
@@ -279,7 +274,7 @@ class _DashBoardState extends State<DashBoard> {
                           AutoSizeText(
                             "Test video",
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.blue,
                               fontWeight: FontWeight.bold,),
                             minFontSize: 15,
                             maxFontSize: 18,
@@ -311,12 +306,11 @@ class _DashBoardState extends State<DashBoard> {
             padding: const EdgeInsets.only(left: 50.0),
             child: SvgPicture.asset(
               'assets/images/undraw_photos_re_pvh3.svg',
-              height: height * 0.55,
+              height: height * 0.4,
               width: width,
               //fit: BoxFit.fill,
             ),
           ),
-          SizedBox(height: height * 0.015),
           Text(
             "No video found",
             style: TextStyle(
@@ -340,4 +334,6 @@ class _DashBoardState extends State<DashBoard> {
       ),
     );
   }
+
+
 }

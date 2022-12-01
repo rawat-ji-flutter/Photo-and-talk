@@ -101,23 +101,9 @@ class _MyAccountState extends State<MyAccount> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-                          children: [
-                            Text("My Account",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 30)),
-                            CircleAvatar(
-                              backgroundColor: AppColors.buttonColor,
-                              radius: 10,
-                              child: CircleAvatar(
-                                backgroundColor: AppColors.buttonColor,
-                                radius: 8,
-                                child: Text("2",style: TextStyle(color: Colors.white,fontSize: 10),)
-                              ),
-                            ),
-                          ],
-                        ),
+                        Text("My Account",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 30)),
                      Expanded(
                        child: SingleChildScrollView(
                          child: Column(
@@ -130,10 +116,10 @@ class _MyAccountState extends State<MyAccount> {
                                      children: [
                                        CircleAvatar(
                                          backgroundColor: AppColors.buttonColor,
-                                         radius: 70,
+                                         radius: 60,
                                          child: CircleAvatar(
                                              backgroundColor: Colors.white,
-                                             radius: 68,
+                                             radius: 58,
                                              foregroundImage: snapshot
                                                  .data.docs[0]["imageURL"]
                                                  .toString() ==
@@ -159,15 +145,15 @@ class _MyAccountState extends State<MyAccount> {
                                            child: const
                                            CircleAvatar(
                                              backgroundColor: AppColors.buttonColor,
-                                             radius: 20,
+                                             radius: 17,
                                              child: CircleAvatar(
                                                backgroundColor:
                                                AppColors.buttonColor,
-                                               radius: 18,
+                                               radius: 16,
                                                child: Icon(
                                                  Icons.camera_alt_outlined,
                                                  color: Colors.white,
-                                                 size: 25.0,
+                                                 size: 22.0,
                                                ),
                                              ),
                                            ),
@@ -460,7 +446,17 @@ class _MyAccountState extends State<MyAccount> {
                            ],
                          ),
                        ),
-                     )
+                     ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            CircleAvatar(
+                                  backgroundColor: Colors.grey,
+                                  radius: 8,
+                                  child: Text("3",style: TextStyle(color: Colors.white,fontSize: 10),)
+                              ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

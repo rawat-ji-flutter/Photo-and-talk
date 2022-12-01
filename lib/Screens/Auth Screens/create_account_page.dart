@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:photo_talk/Common/common_button.dart';
 import 'package:photo_talk/Common/snackbar.dart';
 import 'package:photo_talk/Models/user_model.dart';
-import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/DashBoard.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/dashBoard.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/bottom_nav_menu.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/pick_images_screen.dart';
 import 'package:photo_talk/Services/provider.dart';
