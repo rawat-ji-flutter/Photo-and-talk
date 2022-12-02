@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_talk/Common/IOS_confirmation_dialog.dart';
 import 'package:photo_talk/Common/android_confirm_dialog.dart';
 import 'package:photo_talk/Common/text_styles.dart';
@@ -14,6 +15,15 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+
+
+  TextStyle buttonStyle(){
+    return GoogleFonts.lato(
+        fontSize: 18,
+        color: Colors.grey[800]
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -33,9 +43,11 @@ class _SettingPageState extends State<SettingPage> {
                           },
                           icon: Icon(Platform.isAndroid
                               ? Icons.arrow_back
-                              : Icons.arrow_back_ios),
+                              : Icons.arrow_back_ios,
+                          size: 30,
+                          ),
                       ),
-                      Text("Settings", style: mainBoldHeading())
+                      Text("Settings", style: mainWorkSansHeading())
                     ],
                   ),
                   SizedBox(height: 20),
@@ -52,7 +64,7 @@ class _SettingPageState extends State<SettingPage> {
                           children: [
                             Icon(Icons.language, size: 30,color: Color(0xffdb3535),),
                             SizedBox(width: 10),
-                            Text("Language", style: TextStyle(fontSize: 18)),
+                            Text("Language", style: buttonStyle()),
                           ],
                         ),
                       ),
@@ -97,7 +109,7 @@ class _SettingPageState extends State<SettingPage> {
                             Icon(Icons.delete, size: 30,color: Color(0xffdb3535),),
                             SizedBox(width: 10),
                             Text("Delete your account",
-                                style: TextStyle(fontSize: 18)),
+                                style: buttonStyle()),
                           ],
                         ),
                       ),

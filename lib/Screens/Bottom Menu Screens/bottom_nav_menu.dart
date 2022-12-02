@@ -1,5 +1,6 @@
 //@dart=2.9
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_talk/Common/exit_alert.dart';
 import 'package:photo_talk/Common/no_internet.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/dashBoard.dart';
@@ -53,7 +54,6 @@ class _BottomNavMenuState extends State<BottomNavMenu>
       _selectedIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,11 @@ class _BottomNavMenuState extends State<BottomNavMenu>
         return AlertDialog(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25.0))),
-          title: Text('Enter your project name'),
+          title: Text('Enter your project name',
+              style: GoogleFonts.lato(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold)),
           content: Form(
             key: _formKey,
             child: TextFormField(
@@ -147,13 +151,13 @@ class _BottomNavMenuState extends State<BottomNavMenu>
                   return;
                 } else {
                   Navigator.pop(context);
-                  Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              NewProject1(
-                                projectName: _textFieldController.text.toString(),
-                              ))
-                  ).then((value) {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(
+                          builder: (context) => NewProject1(
+                                projectName:
+                                    _textFieldController.text.toString(),
+                              )))
+                      .then((value) {
                     setState(() {
                       _textFieldController.clear();
                     });

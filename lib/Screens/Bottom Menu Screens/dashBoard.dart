@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_talk/Common/common_button.dart';
 import 'package:photo_talk/Common/snackbar.dart';
 import 'package:photo_talk/Common/text_styles.dart';
@@ -25,7 +26,8 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var code = '';
   bool isButtonClicked = false;
-
+  TextEditingController _textEditingController = TextEditingController();
+  var searchword;
   bool clicked = false;
   @override
   Widget build(BuildContext context) {
@@ -102,11 +104,12 @@ class _DashBoardState extends State<DashBoard> {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: "Hello, ",
-                                        style: TextStyle(
+                                        text: "Hi, ",
+                                        style: GoogleFonts.workSans(
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 30,
-                                            color: Colors.black),
+                                            fontSize: 30
+                                          )
                                       ),
                                       TextSpan(
                                         text: snapshot.data.docs[0]["name"]
@@ -128,7 +131,41 @@ class _DashBoardState extends State<DashBoard> {
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  buildSearchBar(width: width),
+                                  TextField(
+                                    enableSuggestions: true,
+                                    textCapitalization: TextCapitalization.sentences,
+                                    autocorrect: true,
+                                    onSubmitted: (v) {
+                                      setState(() {
+                                        searchword = v;
+                                      });
+                                    },
+                                    onChanged: (value) {
+                                      // getDataForSearch(value);
+                                    },
+                                    controller: _textEditingController,
+                                    decoration: InputDecoration(
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Color(0xFFafafaf),
+                                              width: 1.5),
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(50.0),
+                                          ),
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(50.0),
+                                          ),
+                                        ),
+                                        prefixIcon: Icon(Icons.search,color: Colors.grey),
+                                        filled: true,
+                                        hintStyle:
+                                        new TextStyle(color: Colors.grey[600]),
+                                        hintText: "Search videos",
+                                        fillColor: Colors.white)
+                                    
+                                  ),
                                   SizedBox(
                                     height: height * 0.03,
                                   ),
@@ -231,8 +268,8 @@ class _DashBoardState extends State<DashBoard> {
             itemCount: 6,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 18,
-                mainAxisExtent: height * 0.24),
+                crossAxisSpacing: 30,
+                mainAxisExtent: height * 0.27),
             itemBuilder: (context, index) {
               return GestureDetector(
                   onTap: () {},
@@ -240,7 +277,7 @@ class _DashBoardState extends State<DashBoard> {
                     Container(
                       padding: EdgeInsets.only(
                           left: 20, top: 10, bottom: 10, right: 5),
-                      width: 180.0,
+                      width: 170.0,
                       height: 180.0,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -313,8 +350,11 @@ class _DashBoardState extends State<DashBoard> {
           ),
           Text(
             "No video found",
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+            style: GoogleFonts.workSans(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 22
+            )
           ),
           SizedBox(height: height*0.01),
           Column(
@@ -322,7 +362,10 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               Text(
                 "Get started by clicking on the",
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+                style: GoogleFonts.lato(
+                      fontSize: 18, color: Colors.grey,
+                  fontWeight: FontWeight.w400
+                  )
               ),
               Text(
                 "red button below! ",

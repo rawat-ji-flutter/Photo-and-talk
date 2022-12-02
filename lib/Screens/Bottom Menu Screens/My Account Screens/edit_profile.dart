@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_talk/Common/common_button.dart';
+import 'package:photo_talk/Common/text_styles.dart';
 import 'package:photo_talk/Services/provider.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 import 'package:photo_talk/Widgets/responsive_widget.dart';
@@ -92,10 +93,7 @@ class _EditProfileState extends State<EditProfile> {
                         SizedBox(width: 5),
                         Text(
                           "Edit your profile",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                          style: mainWorkSansHeading(),
                         ),
                       ],
                     ),

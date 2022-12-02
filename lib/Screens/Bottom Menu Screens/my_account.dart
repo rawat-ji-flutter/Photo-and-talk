@@ -3,13 +3,12 @@ import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_talk/Common/IOS_confirmation_dialog.dart';
 import 'package:photo_talk/Common/android_confirm_dialog.dart';
 import 'package:photo_talk/Common/text_styles.dart';
-import 'package:photo_talk/Screens/Auth%20Screens/create_account_page.dart';
 import 'package:photo_talk/Screens/Auth%20Screens/intro_screen.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/My%20Account%20Screens/edit_profile.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/My%20Account%20Screens/setting_page.dart';
@@ -17,7 +16,6 @@ import 'package:photo_talk/Services/provider.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
-
 import '../../Common/snackbar.dart';
 
 class MyAccount extends StatefulWidget {
@@ -102,8 +100,8 @@ class _MyAccountState extends State<MyAccount> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("My Account",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 30)),
+                            style: mainWorkSansHeading()
+                        ),
                      Expanded(
                        child: SingleChildScrollView(
                          child: Column(
@@ -164,18 +162,17 @@ class _MyAccountState extends State<MyAccount> {
                                    SizedBox(height: h * 0.02),
                                    AutoSizeText(
                                      snapshot.data.docs[0]["name"].toString(),
-                                     style: const TextStyle(
-                                         fontWeight: FontWeight.bold,
-                                         fontSize: 22,
-                                         color: Colors.black),
+                                     style:
+                                       GoogleFonts.workSans(
+                                           fontWeight: FontWeight.bold, fontSize: 22
+                                       )
                                    ),
                                    SizedBox(height: h*0.01),
                                    AutoSizeText(
                                      snapshot.data.docs[0]["phoneNo"].toString(),
-                                     style: const TextStyle(
-                                         fontWeight: FontWeight.w400,
-                                         fontSize: 18,
-                                         color: Colors.grey),
+                                     style: GoogleFonts.lato(
+                                         fontWeight: FontWeight.w400, fontSize: 18,color: Colors.grey
+                                     )
                                    ),
                                  ],
                                ),
@@ -222,10 +219,7 @@ class _MyAccountState extends State<MyAccount> {
                                            ),
                                            AutoSizeText(
                                              "Edit",
-                                             style: TextStyle(
-                                                 fontWeight: FontWeight.w600,
-                                                 fontSize: 15,
-                                                 color: Colors.grey[800]),
+                                             style:buttonStyle()
                                            ),
                                            const Spacer(),
                                            const Icon(
@@ -264,10 +258,7 @@ class _MyAccountState extends State<MyAccount> {
                                            ),
                                            AutoSizeText(
                                              "FAQ",
-                                             style: TextStyle(
-                                                 fontWeight: FontWeight.w600,
-                                                 fontSize: 15,
-                                                 color: Colors.grey[800]),
+                                             style: buttonStyle()
                                            ),
                                            const Spacer(),
                                            const Icon(
@@ -298,11 +289,7 @@ class _MyAccountState extends State<MyAccount> {
                                          ),
                                          AutoSizeText(
                                            "Share",
-                                           style: TextStyle(
-                                               fontWeight: FontWeight.w600,
-                                               fontSize: 15,
-                                               color: Colors.grey[800]),
-                                         ),
+                                           style: buttonStyle(),),
                                          const Spacer(),
                                          const Icon(
                                            Icons.arrow_forward_ios_outlined,
@@ -338,10 +325,7 @@ class _MyAccountState extends State<MyAccount> {
                                            ),
                                            AutoSizeText(
                                              "Settings",
-                                             style: TextStyle(
-                                                 fontWeight: FontWeight.w600,
-                                                 fontSize: 15,
-                                                 color: Colors.grey[800]),
+                                             style: buttonStyle()
                                            ),
                                            const Spacer(),
                                            const Icon(
@@ -420,10 +404,7 @@ class _MyAccountState extends State<MyAccount> {
                                            ),
                                            AutoSizeText(
                                              "Logout",
-                                             style: TextStyle(
-                                                 fontWeight: FontWeight.w600,
-                                                 fontSize: 15,
-                                                 color: Colors.grey[800]),
+                                             style: buttonStyle()
                                            ),
                                            const Spacer(),
                                            const Icon(
@@ -453,7 +434,7 @@ class _MyAccountState extends State<MyAccount> {
                             CircleAvatar(
                                   backgroundColor: Colors.grey,
                                   radius: 8,
-                                  child: Text("3",style: TextStyle(color: Colors.white,fontSize: 10),)
+                                  child: Text("4",style: TextStyle(color: Colors.white,fontSize: 10),)
                               ),
                           ],
                         ),
@@ -515,6 +496,14 @@ class _MyAccountState extends State<MyAccount> {
           ])
         ],
       ),
+    );
+  }
+
+  TextStyle buttonStyle(){
+    return GoogleFonts.lato(
+        fontWeight: FontWeight.w600,
+        fontSize: 15,
+        color: Colors.grey[800]
     );
   }
 }

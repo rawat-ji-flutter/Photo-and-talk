@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 TextStyle Header() {
@@ -16,63 +17,22 @@ TextStyle mainBoldHeading() {
     fontSize: 18.0,);
 }
 
-
-TextStyle whiteMainBoldHeading() {
-  return const TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-    fontSize: 18.0,);
+TextStyle mainWorkSansHeading() {
+  return  GoogleFonts.workSans(
+      fontWeight: FontWeight.bold, fontSize: 30
+  );
 }
 
-TextStyle appBarStyle() {
-  return const TextStyle(
-    color: Colors.black,
-    fontWeight: FontWeight.bold,
-    fontSize: 18.0,);
+TextStyle buttonWorkSansHeading() {
+  return  GoogleFonts.workSans(
+      fontWeight: FontWeight.w600,
+      fontSize: 18
+  );
 }
 
-TextStyle whiteAppBarStyle() {
-  return const TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-    fontSize: 18.0,);
-}
+
 
 TextStyle subHeading() {
   return const TextStyle(
     fontSize: 14.0,);
-}
-
-TextStyle whiteSubHeading() {
-  return const TextStyle(
-    color: Colors.white,
-    fontSize: 14.0,);
-}
-
-TextStyle boldSubHeading() {
-  return const TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.bold
-  );
-}
-TextStyle whiteBoldSubHeading() {
-  return const TextStyle(
-      color: Colors.white,
-      fontSize: 16.0,
-      fontWeight: FontWeight.bold
-  );
-}
-TextStyle redBoldSubHeading() {
-  return const TextStyle(
-      color: Colors.red,
-      fontSize: 14.0,
-      fontWeight: FontWeight.bold
-  );
-}
-TextStyle greenBoldSubHeading() {
-  return const TextStyle(
-      color: Colors.green,
-      fontSize: 14.0,
-      fontWeight: FontWeight.bold
-  );
 }

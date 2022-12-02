@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_talk/Common/text_styles.dart';
 import 'dart:io' show Platform, SocketException;
 
 import 'package:photo_talk/Widgets/app_colors.dart';
@@ -49,11 +50,7 @@ class CommonButton extends StatelessWidget {
                       Text(
                         title,
                         softWrap: true,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
+                        style: buttonWorkSansHeading(),
                         maxLines: 1,
                       ),
                     ],

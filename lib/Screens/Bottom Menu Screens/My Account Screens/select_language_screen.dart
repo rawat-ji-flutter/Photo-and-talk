@@ -1,7 +1,8 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:photo_talk/Common/text_styles.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
@@ -14,6 +15,10 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
 
   bool eng = false;
   bool swe = false;
+
+  TextStyle buttonStyle() {
+    return GoogleFonts.lato(fontSize: 18, color: Colors.grey[800]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                             },
                             icon: Icon(
                               Icons.arrow_back,
+                              size: 30,
                               color: Colors.black,
                             ))
                         : IconButton(
@@ -46,21 +52,15 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                             },
                             icon: Icon(
                               Icons.arrow_back_ios,
+                              size: 30,
                               color: Colors.black,
                             )),
-                    Text(
-                      "Select language",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    Text("Select language", style: mainWorkSansHeading()),
                   ],
                 ),
                 SizedBox(
                   height: 20,
                 ),
-
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -81,13 +81,16 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                                   AssetImage("assets/images/eng_logo.png"),
                             ),
                             SizedBox(width: w * 0.05),
-                            Text('English'),
+                            Text(
+                              'English',
+                              style: buttonStyle(),
+                            ),
                             Spacer(),
                             eng == true
-                                ?  Icon(
-                              Icons.done,
-                              color: AppColors.buttonColor,
-                            )
+                                ? Icon(
+                                    Icons.done,
+                                    color: AppColors.buttonColor,
+                                  )
                                 : Container()
                           ],
                         ),
@@ -114,13 +117,16 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                                   AssetImage("assets/images/sweden_logo.png"),
                             ),
                             SizedBox(width: w * 0.05),
-                            Text('Swedish'),
+                            Text(
+                              'Swedish',
+                              style: buttonStyle(),
+                            ),
                             Spacer(),
                             swe == true
-                                ?Icon(
-                              Icons.done,
-                              color: AppColors.buttonColor,
-                            )
+                                ? Icon(
+                                    Icons.done,
+                                    color: AppColors.buttonColor,
+                                  )
                                 : Container()
                           ],
                         ),
