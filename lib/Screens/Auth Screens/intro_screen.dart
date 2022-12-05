@@ -63,73 +63,99 @@ class _IntroSlidesState extends State<IntroSlides> {
                           },
                           child: Stack(
                             fit: StackFit.expand,
-                            alignment: Alignment.topCenter,
                             children: [
                               Image(
                                   image: AssetImage(slides[index].getImage()!),
                                   fit: BoxFit.cover),
                               Positioned(
-                                  top: h * 0.1,
+                                  bottom: h * 0.01,
                                   child: SizedBox(
                                     width: w,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          slides[index].getTitle()!,
-                                          style: TextStyle(
-                                              fontSize: !ResponsiveWidget
-                                                      .isSmallScreen(context)
-                                                  ? 45
-                                                  : 28,
-                                              color: AppColors.secondaryColor,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                        Text(
-                                          slides[index].getSubTitle(),
-                                          style: TextStyle(
-                                              fontSize: !ResponsiveWidget
-                                                      .isSmallScreen(context)
-                                                  ? 35
-                                                  : 16,
-                                              color: index == 1
-                                                  ? Colors.black
-                                                  : Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                        ),
-                                      ],
+                                    child:
+                                    Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            slides[index].getTitle()!,
+                                            style: TextStyle(
+                                                fontSize: !ResponsiveWidget
+                                                        .isSmallScreen(context)
+                                                    ? 48
+                                                    : 30,
+                                                color: AppColors.secondaryColor,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  slides[index].getSubTitle(),
+                                                  style: TextStyle(
+                                                      fontSize: !ResponsiveWidget
+                                                              .isSmallScreen(context)
+                                                          ? 35
+                                                          : 16,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold),
+                                                  textAlign: TextAlign.start,
+                                                ),
+                                              ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  if (_controller!.page != 2) {
+                                                    _controller!.nextPage(
+                                                        duration: const Duration(seconds: 1),
+                                                        curve: Curves.ease);
+                                                  } else {
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                        builder: (context) => LoginScreen(
+                                                        )));
+                                                  }
+                                                },
+                                                icon: Icon(Icons.arrow_forward_ios,
+                                                  color: AppColors.secondaryColor,
+                                                  size: 30,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   )),
                             ],
                           ));
                     }),
-                Positioned(
-                    bottom: 20,
-                    right: 20,
-                    child: IconButton(
-                      onPressed: () {
-                        if (_controller!.page != 2) {
-                          _controller!.nextPage(
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.ease);
-                        } else {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginScreen(
-                              )));
-                        }
-                      },
-                      icon: Icon(
-                        Platform.isAndroid
-                            ? Icons.arrow_forward_sharp
-                            : Icons.arrow_forward_ios,
-                        color: AppColors.secondaryColor,
-                        size: 30,
-                      ),
-                    ))
+                // Positioned(
+                //     bottom: 20,
+                //     right: 20,
+                //     child:
+                //     IconButton(
+                //       onPressed: () {
+                //         if (_controller!.page != 2) {
+                //           _controller!.nextPage(
+                //               duration: const Duration(seconds: 1),
+                //               curve: Curves.ease);
+                //         } else {
+                //           Navigator.of(context).push(MaterialPageRoute(
+                //               builder: (context) => LoginScreen(
+                //               )));
+                //         }
+                //       },
+                //       icon: Icon(
+                //         Platform.isAndroid
+                //             ? Icons.arrow_forward_sharp
+                //             : Icons.arrow_forward_ios,
+                //         color: AppColors.secondaryColor,
+                //         size: 30,
+                //       ),
+                //     )
+                // )
               ],
             ),
           ),

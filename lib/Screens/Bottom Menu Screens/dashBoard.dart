@@ -2,17 +2,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:photo_talk/Common/common_button.dart';
-import 'package:photo_talk/Common/snackbar.dart';
 import 'package:photo_talk/Common/text_styles.dart';
-import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/new_project1.dart';
-import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/pick_images_screen.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/inbox_screen.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/search_screen.dart';
 import 'package:photo_talk/Services/provider.dart';
-import 'package:photo_talk/Widgets/app_colors.dart';
-import 'package:photo_talk/Widgets/responsive_widget.dart';
 import 'package:provider/provider.dart';
 
 class DashBoard extends StatefulWidget {
@@ -71,12 +65,13 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: (){
-                                     setState(() {
-                                       clicked = true;
-                                     });
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                          builder: (context) => InboxScreen(
+                                          )));
                                     },
-                                    onDoubleTap: (){
+                                    onDoubleTap: () {
                                       setState(() {
                                         clicked = false;
                                       });
@@ -104,13 +99,11 @@ class _DashBoardState extends State<DashBoard> {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: "Hi, ",
-                                        style: GoogleFonts.workSans(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 30
-                                          )
-                                      ),
+                                          text: "Hi, ",
+                                          style: GoogleFonts.workSans(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 30)),
                                       TextSpan(
                                         text: snapshot.data.docs[0]["name"]
                                             .toString(),
@@ -124,16 +117,15 @@ class _DashBoardState extends State<DashBoard> {
                                   ),
                                 ),
                               ),
-                              clicked == true ?
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: height * 0.02,
-                                  ),
-                                  TextField(
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              Container(
+                                height: height*0.06,
+                                child: TextField(
                                     enableSuggestions: true,
-                                    textCapitalization: TextCapitalization.sentences,
+                                    textCapitalization:
+                                        TextCapitalization.sentences,
                                     autocorrect: true,
                                     onSubmitted: (v) {
                                       setState(() {
@@ -158,25 +150,30 @@ class _DashBoardState extends State<DashBoard> {
                                             Radius.circular(50.0),
                                           ),
                                         ),
-                                        prefixIcon: Icon(Icons.search,color: Colors.grey),
+                                        prefixIcon: Icon(Icons.search,
+                                            color: Colors.grey,
+                                        ),
                                         filled: true,
-                                        hintStyle:
-                                        new TextStyle(color: Colors.grey[600]),
+                                        hintStyle: new TextStyle(
+                                            color: Colors.grey[600]),
                                         hintText: "Search videos",
-                                        fillColor: Colors.white)
-                                    
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.03,
-                                  ),
-                                    buildMainDashboard(),
-                                  SizedBox(
-                                    height: height * 0.05,
-                                  ),
-                                ],
-                              )
-                              :
-                             noVideos()
+                                        fillColor: Colors.white)),
+                              ),
+                              SizedBox(
+                                height: height * 0.03,
+                              ),
+                              clicked == true
+                                  ? Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        buildMainDashboard(),
+                                        SizedBox(
+                                          height: height * 0.05,
+                                        ),
+                                      ],
+                                    )
+                                  : noVideos()
                             ],
                           ),
                         ),
@@ -205,10 +202,9 @@ class _DashBoardState extends State<DashBoard> {
           height: 51,
           width: width,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(color: Color(0xFFafafaf))
-          ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(color: Color(0xFFafafaf))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -222,7 +218,7 @@ class _DashBoardState extends State<DashBoard> {
                       icon: Icon(
                         Icons.search,
                         size: 25,
-                        color:Colors.grey,
+                        color: Colors.grey,
                       ))),
               GestureDetector(
                 onTap: () {
@@ -233,11 +229,9 @@ class _DashBoardState extends State<DashBoard> {
                     width: 210,
                     child: Text("Search videos",
                         style: TextStyle(
-                          color:Color(0xFFafafaf),
+                          color: Color(0xFFafafaf),
                           fontSize: 16,
-                        )
-                    )
-                ),
+                        ))),
               )
             ],
           ),
@@ -268,8 +262,8 @@ class _DashBoardState extends State<DashBoard> {
             itemCount: 6,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 30,
-                mainAxisExtent: height * 0.27),
+                crossAxisSpacing: 50,
+                mainAxisExtent: height * 0.3),
             itemBuilder: (context, index) {
               return GestureDetector(
                   onTap: () {},
@@ -277,17 +271,15 @@ class _DashBoardState extends State<DashBoard> {
                     Container(
                       padding: EdgeInsets.only(
                           left: 20, top: 10, bottom: 10, right: 5),
-                      width: 170.0,
-                      height: 180.0,
+                      width: 150.0,
+                      height: 160.0,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 3,
-                            blurRadius: 5,
-                            offset: Offset(0, 3), // changes position of shadow
-                          ),
-                        ],
+                              color: Colors.black12,
+                              blurRadius: 15,
+                              spreadRadius: 1.0
+                          )],
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
                         // image: DecorationImage(
@@ -301,7 +293,7 @@ class _DashBoardState extends State<DashBoard> {
                         children: [
                           Container(
                             //color: Colors.green,
-                            height:height*0.12,
+                            height: height * 0.12,
                             width: width,
                             child: Image.asset(
                               "assets/images/video_placeholder.jpg",
@@ -312,7 +304,8 @@ class _DashBoardState extends State<DashBoard> {
                             "Test video",
                             style: TextStyle(
                               color: Colors.blue,
-                              fontWeight: FontWeight.bold,),
+                              fontWeight: FontWeight.bold,
+                            ),
                             minFontSize: 15,
                             maxFontSize: 18,
                             overflow: TextOverflow.ellipsis,
@@ -320,7 +313,8 @@ class _DashBoardState extends State<DashBoard> {
                           AutoSizeText(
                             "a month ago",
                             style: TextStyle(
-                              color: Colors.grey,),
+                              color: Colors.grey,
+                            ),
                             minFontSize: 10,
                             maxFontSize: 12,
                             overflow: TextOverflow.ellipsis,
@@ -328,7 +322,6 @@ class _DashBoardState extends State<DashBoard> {
                         ],
                       ),
                     ),
-
                   ]));
             });
   }
@@ -339,34 +332,27 @@ class _DashBoardState extends State<DashBoard> {
     return Center(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 50.0),
-            child: SvgPicture.asset(
-              'assets/images/undraw_photos_re_pvh3.svg',
-              height: height * 0.4,
-              width: width,
-              //fit: BoxFit.fill,
-            ),
+          Image.asset(
+            'assets/images/Phototalk-dash-graphic.png',
+            height: height * 0.3,
+            width: width,
+            //fit: BoxFit.fill,
           ),
-          Text(
-            "No video found",
-            style: GoogleFonts.workSans(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: 22
-            )
-          ),
-          SizedBox(height: height*0.01),
+          SizedBox(height: height * 0.03),
+          Text("No video found",
+              style: GoogleFonts.workSans(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 22)),
+          SizedBox(height: height * 0.01),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Get started by clicking on the",
-                style: GoogleFonts.lato(
-                      fontSize: 18, color: Colors.grey,
-                  fontWeight: FontWeight.w400
-                  )
-              ),
+              Text("Get started by clicking on the",
+                  style: GoogleFonts.lato(
+                      fontSize: 18,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400)),
               Text(
                 "red button below! ",
                 style: TextStyle(fontSize: 18, color: Colors.grey),
@@ -377,6 +363,4 @@ class _DashBoardState extends State<DashBoard> {
       ),
     );
   }
-
-
 }

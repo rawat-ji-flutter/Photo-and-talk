@@ -4,14 +4,21 @@ class Assets {
 
   static const String animationNet = 'assets/animation/net.json';
   static const String imagesEngLogo = 'assets/images/eng_logo.png';
+  static const String imagesHomeBg = 'assets/images/home_bg.svg';
   static const String imagesLoginBg = 'assets/images/login_bg.jpg';
   static const String imagesPhotoTalkAppIcon = 'assets/images/photo-talk-app-icon.png';
   static const String imagesPhotoTalkSplash = 'assets/images/photo-talk-splash.png';
   static const String imagesPhotoToTalkLogo = 'assets/images/photo-to-talk-logo.png';
+  static const String imagesPhototalkDashGraphic = 'assets/images/Phototalk-dash-graphic.png';
+  static const String imagesPhototalkLogin = 'assets/images/Phototalk-login.png';
   static const String imagesPlaceholder = 'assets/images/placeholder.png';
   static const String imagesSwedenLogo = 'assets/images/sweden_logo.png';
+  static const String imagesThumb = 'assets/images/thumb.jpg';
   static const String imagesUndrawPhotosRePvh3 = 'assets/images/undraw_photos_re_pvh3.svg';
   static const String imagesVideoPlaceholder = 'assets/images/video_placeholder.jpg';
+  static const String introIntroPicture1 = 'assets/intro/intro-picture-1.png';
+  static const String introIntroPicture2 = 'assets/intro/intro-picture-2.png';
+  static const String introIntroPicture3 = 'assets/intro/intro-picture-3.png';
   static const String introPexelsCottonbro5082578 = 'assets/intro/pexels-cottonbro-5082578.png';
   static const String introPexelsMarleneLeppÃ¤nen2066896 = 'assets/intro/pexels-marlene-leppÃ¤nen-2066896.png';
   static const String introPhotoTalkIntro3 = 'assets/intro/photo-talk-intro-3.png';

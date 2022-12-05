@@ -39,7 +39,7 @@ List<SliderModel> getSlides() {
 
 // 1
   sliderModel.setImage(
-      setImage: "assets/intro/pexels-cottonbro-5082578.png",
+      setImage: "assets/intro/intro-picture-1.png",
       setTitle: "Import",
       setSubTitle: "Take photos with the camera or import from your gallery.");
   slides.add(sliderModel);
@@ -48,7 +48,7 @@ List<SliderModel> getSlides() {
 
 // 2
   sliderModel.setImage(
-      setImage: "assets/intro/pexels-marlene-leppÃ¤nen-2066896.png",
+      setImage: "assets/intro/intro-picture-2.png",
       setTitle: "Create",
       setSubTitle:
       "Add voice overs to photos to add more details.");
@@ -58,7 +58,7 @@ List<SliderModel> getSlides() {
 
 // 3
   sliderModel.setImage(
-    setImage: "assets/intro/photo-talk-intro-3.png",
+    setImage: "assets/intro/intro-picture-3.png",
     setTitle: "Share",
     setSubTitle:
     "Share your new talking photos with friends and family.",

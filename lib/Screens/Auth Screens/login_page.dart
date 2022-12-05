@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_talk/Common/common_button.dart';
 import 'package:photo_talk/Common/snackbar.dart';
-import 'package:photo_talk/Screens/Auth%20Screens/otp_screen.dart';
 import 'package:photo_talk/Services/provider.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 import 'package:pinput/pinput.dart';
@@ -92,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 20,
         color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600),
@@ -105,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final focusedPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 20,
         color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600),
@@ -118,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final submittedPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 20,
         color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600),
@@ -141,7 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
               width: width,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/images/login_bg.jpg"),
+                      image: const AssetImage("assets/images/Phototalk-login.png"),
+                      colorFilter:
+                      ColorFilter.mode(Colors.white.withOpacity(0.7),
+                          BlendMode.dstATop),
                       fit: BoxFit.cover,
                       opacity: 1.0)),
               child: SingleChildScrollView(
@@ -161,9 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned(
               bottom: 0,
               child: Container(
-                height: height * 0.45,
+                height: height * 0.4,
                 width: width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
@@ -178,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           isSignedIn == true
                               ? "Enter your otp here"
                               : "Sign in",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold)),
                       SizedBox(height: height * 0.04),
                       isSignedIn == true
@@ -200,14 +202,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Is this wrong number ? "),
+                                    const Text("Is this wrong number ? "),
                                     GestureDetector(
                                         onTap: () {
                                           setState(() {
                                             isSignedIn = false;
                                           });
                                         },
-                                        child: Text("Change number",
+                                        child: const Text("Change number",
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.blue,
@@ -232,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         // constraints: const BoxConstraints.expand(),
                                         child: Column(
                                           children: [
-                                            Spacer(),
+                                            const Spacer(),
                                             GestureDetector(
                                               onTap: () {
                                                 _showCountryPicker(
@@ -254,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ],
                                               ),
                                             ),
-                                            Spacer(),
+                                            const Spacer(),
                                           ],
                                         )),
                                   ),
@@ -291,9 +293,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           // prefix: const Text('+46 '),
                                           counterText: "",
                                           //prefixIcon: Icon(Icons.flag),
-                                          contentPadding: EdgeInsets.fromLTRB(
+                                          contentPadding: const EdgeInsets.fromLTRB(
                                               15, 15, 30, 15),
-                                          labelStyle: TextStyle(
+                                          labelStyle: const TextStyle(
                                               letterSpacing: 2,
                                               color: Colors.black),
                                           border: OutlineInputBorder(
@@ -303,7 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(25.0),
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: AppColors.buttonColor,
                                             ),
                                           ),
@@ -405,7 +407,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       //           ),
                       //         ],
                       //       ),
-                      Spacer(),
+                      const Spacer(),
                       isSignedIn == true
                           ? Consumer<AuthProvider>(
                               builder: (context, provider, child) {
@@ -437,7 +439,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               w: width,
                               title: "Sign In",
                               loading: isButtonClicked),
-                      Spacer(),
+                      const Spacer(),
                     ],
                   ),
                 ),

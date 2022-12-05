@@ -1,15 +1,11 @@
 //@dart=2.9
-import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_talk/Common/common_button.dart';
 import 'package:photo_talk/Common/snackbar.dart';
-import 'package:photo_talk/Common/text_styles.dart';
-import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/new_project_2.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 import 'package:reorderable_grid_view/reorderable_grid_view.dart';
 
@@ -61,7 +57,7 @@ class _NewProject1State extends State<NewProject1> {
                   ),
                   Expanded(
                     child: Text(widget.projectName.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             overflow: TextOverflow.ellipsis)),
@@ -74,56 +70,60 @@ class _NewProject1State extends State<NewProject1> {
                     children: [
                       SizedBox(height: h * 0.1),
                       imageArray.length == 0
-                          ? Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.camera_outlined,
-                                      color: AppColors.buttonColor,
-                                      size: 30,
-                                    ),
-                                    SizedBox(width: w * 0.1),
-                                    Expanded(
-                                        child: Text(
-                                            "Add photos from your library or capture with your camera.",
-                                            style:infoStyle()))
-                                  ],
-                                ),
-                                SizedBox(height: h * 0.06),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.move_down_outlined,
-                                      color: AppColors.buttonColor,
-                                      size: 30,
-                                    ),
-                                    SizedBox(width: w * 0.1),
-                                    Expanded(
-                                        child: Text(
-                                      "Arrange your photos in your desired order",
-                                      style: infoStyle()
-                                    ))
-                                  ],
-                                ),
-                                SizedBox(height: h * 0.06),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.keyboard_voice_rounded,
-                                      color: AppColors.buttonColor,
-                                      size: 30,
-                                    ),
-                                    SizedBox(width: w * 0.1),
-                                    Expanded(
-                                        child: Text(
-                                            "Add recordings to each photo",
-                                            style: infoStyle()))
-                                  ],
-                                ),
-                                SizedBox(height: h * 0.1),
-                              ],
-                            )
+                          ?
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.camera_outlined,
+                                        color: AppColors.buttonColor,
+                                        size: 30,
+                                      ),
+                                      SizedBox(width: w * 0.08),
+                                      Expanded(
+                                          child: Text(
+                                              "Add photos from your library or capture with your camera.",
+                                              style:infoStyle()))
+                                    ],
+                                  ),
+                                  SizedBox(height: h * 0.06),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.move_down_outlined,
+                                        color: AppColors.buttonColor,
+                                        size: 30,
+                                      ),
+                                      SizedBox(width: w * 0.08),
+                                      Expanded(
+                                          child: Text(
+                                        "Arrange your photos in your desired order",
+                                        style: infoStyle()
+                                      ))
+                                    ],
+                                  ),
+                                  SizedBox(height: h * 0.06),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.keyboard_voice_rounded,
+                                        color: AppColors.buttonColor,
+                                        size: 30,
+                                      ),
+                                      SizedBox(width: w * 0.08),
+                                      Expanded(
+                                          child: Text(
+                                              "Add recordings to each photo",
+                                              style: infoStyle()))
+                                    ],
+                                  ),
+                                  SizedBox(height: h * 0.1),
+                                ],
+                              ),
+                      )
                           : gridView(),
                       SizedBox(height: h * 0.2),
                       imageArray.length >=6 ?
@@ -325,7 +325,7 @@ class _NewProject1State extends State<NewProject1> {
                           radius: 12,
                           child: Text(
                             "${index + 1}",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         )),
                   ),
@@ -388,7 +388,7 @@ class _NewProject1State extends State<NewProject1> {
                                 radius: 12,
                                 child: Text(
                                   "${i + 1}",
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               )),
                         ),
