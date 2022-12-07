@@ -85,112 +85,121 @@ class _InboxScreenState extends State<InboxScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            GridView.builder(
+            ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 physics: const ScrollPhysics(),
                 itemCount: 8,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 50,
-                    mainAxisExtent: height * 0.3),
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                      onTap: () {},
-                      child: Column(children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: 150.0,
-                              height: height * 0.22,
-                              decoration: const BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 15,
-                                      spreadRadius: 1.0)
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/thumb.jpg",
-                                  ),
-                                  SizedBox(height: height * 0.01),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                         AutoSizeText(
-                                          "Test video",
-                                          style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          minFontSize: 15,
-                                          maxFontSize: 18,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        SizedBox(height: 2),
-                                         AutoSizeText(
-                                          "a month ago",
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                          ),
-                                          minFontSize: 10,
-                                          maxFontSize: 12,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                         SizedBox(height: 2),
-                                         Row(
-                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                           children: [
-                                             AutoSizeText(
-                                               "By Bipin Rawat",
-                                               style: TextStyle(
-                                                 color: Colors.grey,
-                                               ),
-                                               minFontSize: 10,
-                                               maxFontSize: 12,
-                                               overflow: TextOverflow.ellipsis,
-                                             ),
-                                             CircleAvatar(
-                                               radius: 10,
-                                               backgroundColor: Colors.red,
-                                               child: Text("B",style: TextStyle(fontSize: 10,color: Colors.white),),
-                                             ),
-                                           ],
-                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Positioned(
-                                top: 0,
-                                left: 0,
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: Colors.blue),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Text(
-                                        "New",
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.white),
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GestureDetector(
+                        onTap: () {},
+                        child: Column(children: [
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        blurRadius: 15,
+                                        spreadRadius: 1.0)
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0)),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: height * 0.12,
+                                        width: width * 0.35,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/images/thumb.jpg"),
+                                                fit: BoxFit.cover)),
                                       ),
-                                    )))
-                          ],
-                        ),
-                      ]));
+                                      SizedBox(height: height * 0.01),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AutoSizeText(
+                                              "Line Wranne",
+                                              style: TextStyle(
+                                                color: AppColors.buttonColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              minFontSize: 15,
+                                              maxFontSize: 18,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            SizedBox(height: 2),
+                                            AutoSizeText(
+                                              "My trip to England",
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                              minFontSize: 10,
+                                              maxFontSize: 12,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            SizedBox(height: height * 0.035),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                AutoSizeText(
+                                                  "2 weeks ago",
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                  minFontSize: 10,
+                                                  maxFontSize: 12,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                  top: 10,
+                                  right: 10,
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.blue),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text(
+                                          "New",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white),
+                                        ),
+                                      )))
+                            ],
+                          ),
+                        ])),
+                  );
                 }),
           ],
         ),

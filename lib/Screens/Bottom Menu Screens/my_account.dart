@@ -18,6 +18,7 @@ import 'package:provider/provider.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import '../../Common/snackbar.dart';
 
+
 class MyAccount extends StatefulWidget {
   const MyAccount({Key key}) : super(key: key);
 
@@ -32,13 +33,13 @@ class _MyAccountState extends State<MyAccount> {
   final _imagePicker = ImagePicker();
   File pickedImage;
 
-  Future pickSingleImage1(int selectedmethod) async {
+  Future pickSingleImage1(int selectedMethod) async {
 
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     try {
       XFile image = await _imagePicker.pickImage(
           source:
-              selectedmethod == 0 ? ImageSource.camera : ImageSource.gallery,
+              selectedMethod == 0 ? ImageSource.camera : ImageSource.gallery,
           imageQuality: 20);
       if (image != null) {
         ProgressDialog pd = ProgressDialog(context: context);
@@ -132,7 +133,8 @@ class _MyAccountState extends State<MyAccount> {
                                        Positioned(
                                          bottom: 4.0,
                                          right: 4.0,
-                                         child: InkWell(
+                                         child:
+                                         InkWell(
                                            onTap: () {
                                              showModalBottomSheet(
                                                context: context,
@@ -430,11 +432,11 @@ class _MyAccountState extends State<MyAccount> {
                      ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
+                          children: const [
                             CircleAvatar(
                                   backgroundColor: Colors.grey,
                                   radius: 8,
-                                  child: Text("4",style: TextStyle(color: Colors.white,fontSize: 10),)
+                                  child: Text("6",style: TextStyle(color: Colors.white,fontSize: 10),)
                               ),
                           ],
                         ),

@@ -332,9 +332,10 @@ class _DashBoardState extends State<DashBoard> {
     return Center(
       child: Column(
         children: [
+          SizedBox(height: height*0.05),
           Image.asset(
             'assets/images/Phototalk-dash-graphic.png',
-            height: height * 0.3,
+            height: height * 0.15,
             width: width,
             //fit: BoxFit.fill,
           ),
