@@ -4,6 +4,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 import 'package:photo_talk/Common/text_styles.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/MyInbox/inbox_detail_screen.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/MyInbox/video_player.dart';
 import 'package:photo_talk/Widgets/app_colors.dart';
 
 class InboxScreen extends StatefulWidget {
@@ -94,7 +96,12 @@ class _InboxScreenState extends State<InboxScreen> {
                   return Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ChewieDemo()
+                          )
+                          );
+                        },
                         child: Column(children: [
                           Stack(
                             children: [
@@ -108,7 +115,7 @@ class _InboxScreenState extends State<InboxScreen> {
                                   ],
                                   color: Colors.white,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
+                                      BorderRadius.all(Radius.circular(10.0)),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
@@ -121,18 +128,20 @@ class _InboxScreenState extends State<InboxScreen> {
                                         width: width * 0.35,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                                BorderRadius.circular(5),
                                             image: DecorationImage(
                                                 image: AssetImage(
                                                     "assets/images/thumb.jpg"),
-                                                fit: BoxFit.cover)),
+                                                fit: BoxFit.cover)
+                                        ),
                                       ),
                                       SizedBox(height: height * 0.01),
                                       Padding(
-                                        padding: const EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.only(left: 12.0,right: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             AutoSizeText(
                                               "Line Wranne",
@@ -140,8 +149,8 @@ class _InboxScreenState extends State<InboxScreen> {
                                                 color: AppColors.buttonColor,
                                                 fontWeight: FontWeight.bold,
                                               ),
-                                              minFontSize: 15,
-                                              maxFontSize: 18,
+                                              minFontSize: 20,
+                                              maxFontSize: 22,
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             SizedBox(height: 2),
@@ -150,11 +159,11 @@ class _InboxScreenState extends State<InboxScreen> {
                                               style: TextStyle(
                                                 color: Colors.grey,
                                               ),
-                                              minFontSize: 10,
-                                              maxFontSize: 12,
+                                              minFontSize: 11,
+                                              maxFontSize: 14,
                                               overflow: TextOverflow.ellipsis,
                                             ),
-                                            SizedBox(height: height * 0.035),
+                                            SizedBox(height: height * 0.05),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -165,8 +174,8 @@ class _InboxScreenState extends State<InboxScreen> {
                                                   style: TextStyle(
                                                     color: Colors.grey,
                                                   ),
-                                                  minFontSize: 10,
-                                                  maxFontSize: 12,
+                                                  minFontSize: 13,
+                                                  maxFontSize: 15,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                 ),

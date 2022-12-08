@@ -96,7 +96,7 @@ class _BottomNavMenuState extends State<BottomNavMenu>
     return FloatingActionButton(
       backgroundColor: AppColors.buttonColor,
       onPressed: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
+        Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => NewProject1()
         )
         );

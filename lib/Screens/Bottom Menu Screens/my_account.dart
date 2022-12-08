@@ -436,7 +436,7 @@ class _MyAccountState extends State<MyAccount> {
                             CircleAvatar(
                                   backgroundColor: Colors.grey,
                                   radius: 8,
-                                  child: Text("6",style: TextStyle(color: Colors.white,fontSize: 10),)
+                                  child: Text("7",style: TextStyle(color: Colors.white,fontSize: 10),)
                               ),
                           ],
                         ),

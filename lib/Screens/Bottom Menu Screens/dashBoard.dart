@@ -4,9 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_talk/Common/text_styles.dart';
-import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/inbox_screen.dart';
+import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/MyInbox/inbox_screen.dart';
 import 'package:photo_talk/Screens/Bottom%20Menu%20Screens/search_screen.dart';
 import 'package:photo_talk/Services/provider.dart';
+import 'package:photo_talk/Widgets/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class DashBoard extends StatefulWidget {
@@ -52,45 +53,54 @@ class _DashBoardState extends State<DashBoard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 20.0),
-                                    child: Image.asset(
-                                      "assets/images/photo-to-talk-logo.png",
-                                      height: height * 0.12,
-                                      width: width * 0.5,
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    clicked=true;
+                                  });
+                                },
+                                onDoubleTap: () {
+                                  setState(() {
+                                    clicked = false;
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: Image.asset(
+                                        "assets/images/photo-to-talk-logo.png",
+                                        height: height * 0.12,
+                                        width: width * 0.5,
+                                      ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                          builder: (context) => InboxScreen(
-                                          )));
-                                    },
-                                    onDoubleTap: () {
-                                      setState(() {
-                                        clicked = false;
-                                      });
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 18,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    InboxScreen(
+
+                                                    )));
+                                      },
                                       child: CircleAvatar(
                                         backgroundColor: Colors.white,
-                                        radius: 16,
-                                        child: Icon(
-                                          Icons.mail_outline_outlined,
-                                          color: Colors.black,
-                                          size: 20.0,
+                                        radius: 18,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          radius: 16,
+                                          child: Icon(
+                                            Icons.mail_outline_outlined,
+                                            color: Colors.black,
+                                            size: 20.0,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               // SizedBox(height: height * 0.01),
                               Padding(
@@ -121,7 +131,7 @@ class _DashBoardState extends State<DashBoard> {
                                 height: height * 0.02,
                               ),
                               Container(
-                                height: height*0.06,
+                                height: height * 0.06,
                                 child: TextField(
                                     enableSuggestions: true,
                                     textCapitalization:
@@ -150,8 +160,9 @@ class _DashBoardState extends State<DashBoard> {
                                             Radius.circular(50.0),
                                           ),
                                         ),
-                                        prefixIcon: Icon(Icons.search,
-                                            color: Colors.grey,
+                                        prefixIcon: Icon(
+                                          Icons.search,
+                                          color: Colors.grey,
                                         ),
                                         filled: true,
                                         hintStyle: new TextStyle(
@@ -186,7 +197,16 @@ class _DashBoardState extends State<DashBoard> {
                 return Center(
                     child: Text("Error occurred", style: mainBoldHeading()));
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20),
+                        Text('Loading', style: TextStyle(color: Colors.white)),
+                      ]),
+                );
               }
             }),
       ),
@@ -270,55 +290,66 @@ class _DashBoardState extends State<DashBoard> {
                   child: Column(children: [
                     Container(
                       padding: EdgeInsets.only(
-                          left: 20, top: 10, bottom: 10, right: 5),
+                          bottom: 10,
+                      ),
                       width: 150.0,
-                      height: 160.0,
+                      height: height*0.21,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black12,
                               blurRadius: 15,
-                              spreadRadius: 1.0
-                          )],
+                              spreadRadius: 1.0)
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        // image: DecorationImage(
-                        //   image: AssetImage(
-                        //     "assets/images/video_placeholder.jpg",
-                        //   ),
-                        // )
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: [
                           Container(
-                            //color: Colors.green,
                             height: height * 0.12,
                             width: width,
-                            child: Image.asset(
-                              "assets/images/video_placeholder.jpg",
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(5),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/thumb.jpg"),
+                                    fit: BoxFit.fill
+                                )
                             ),
                           ),
                           Spacer(),
-                          AutoSizeText(
-                            "Test video",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AutoSizeText(
+                                  "Test video",
+                                  style: TextStyle(
+                                    color: AppColors.buttonColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  minFontSize: 18,
+                                  maxFontSize: 20,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                AutoSizeText(
+                                  "a month ago",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  minFontSize: 10,
+                                  maxFontSize: 12,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
                             ),
-                            minFontSize: 15,
-                            maxFontSize: 18,
-                            overflow: TextOverflow.ellipsis,
                           ),
-                          AutoSizeText(
-                            "a month ago",
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            minFontSize: 10,
-                            maxFontSize: 12,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+
                         ],
                       ),
                     ),
@@ -332,7 +363,7 @@ class _DashBoardState extends State<DashBoard> {
     return Center(
       child: Column(
         children: [
-          SizedBox(height: height*0.05),
+          SizedBox(height: height * 0.05),
           Image.asset(
             'assets/images/Phototalk-dash-graphic.png',
             height: height * 0.15,

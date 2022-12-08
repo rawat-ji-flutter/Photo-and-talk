@@ -57,7 +57,7 @@ class _NewProject1State extends State<NewProject1> {
                     iconSize: 30,
                   ),
                   Expanded(
-                    child: Text("New Project 1",
+                    child: Text("Create Project",
                         style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -68,217 +68,222 @@ class _NewProject1State extends State<NewProject1> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(height: h * 0.02),
-                      imageArray.length == 0
-                          ? Container()
-                          : Form(
-                              key: _formKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Text(
-                                  //   "Name",
-                                  //   style: TextStyle(
-                                  //       color: Colors.black,
-                                  //       fontWeight: FontWeight.bold),
-                                  // ),
-                                  SizedBox(height: h * 0.01),
-                                  TextFormField(
-                                    controller: projectNameController,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter your project name';
-                                      }
-                                      return null;
-                                    },
-                                    onChanged: (value) {},
-                                    keyboardType: TextInputType.text,
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    decoration: InputDecoration(
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      hintText: "Enter your project name",
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(15, 15, 30, 15),
-                                      labelStyle: TextStyle(
-                                          letterSpacing: 2,
-                                          color: Colors.black),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
-                                    ),
-                                  ),
-                                  SizedBox(height: h * 0.03),
-                                ],
-                              ),
-                            ),
-                      imageArray.length == 0
-                          ? Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                children: [
-                                  imageArray.length == 0
-                                      ? SizedBox(height: h * 0.03)
-                                      : SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.camera_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: w * 0.08),
-                                      Expanded(
-                                          child: Text(
-                                              "Add photos from your library or capture with your camera.",
-                                              style: infoStyle()))
-                                    ],
-                                  ),
-                                  SizedBox(height: h * 0.06),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.move_down_outlined,
-                                        color: AppColors.buttonColor,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: w * 0.08),
-                                      Expanded(
-                                          child: Text(
-                                              "Arrange your photos in your desired order",
-                                              style: infoStyle()))
-                                    ],
-                                  ),
-                                  SizedBox(height: h * 0.06),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.keyboard_voice_rounded,
-                                        color: AppColors.buttonColor,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: w * 0.08),
-                                      Expanded(
-                                          child: Text(
-                                              "Add recordings to each photo",
-                                              style: infoStyle()))
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          : imageArray.length == 0 || imageArray.length >= 6
-                              ? Container()
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: h * 0.02),
+                        imageArray.length == 0
+                            ? Container()
+                            :
+                        Form(
+                                key: _formKey,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Choose photos",
-                                        style: buttonWorkSansHeading()),
-                                    SizedBox(width: 10),
-                                    InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          builder: ((builder) => bottomSheet()),
-                                        );
+                                    // Text(
+                                    //   "Name",
+                                    //   style: TextStyle(
+                                    //       color: Colors.black,
+                                    //       fontWeight: FontWeight.bold),
+                                    // ),
+                                    SizedBox(height: h * 0.01),
+                                    TextFormField(
+                                      controller: projectNameController,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Please enter your project name';
+                                        }
+                                        return null;
                                       },
-                                      child: const CircleAvatar(
-                                        backgroundColor: AppColors.buttonColor,
-                                        radius: 23,
-                                        child: Icon(
-                                          Icons.add_a_photo_outlined,
-                                          color: Colors.white,
-                                          size: 23.0,
+                                      onChanged: (value) {},
+                                      keyboardType: TextInputType.text,
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintText: "Enter your project name",
+                                        contentPadding:
+                                            EdgeInsets.fromLTRB(15, 15, 30, 15),
+                                        labelStyle: TextStyle(
+                                            letterSpacing: 2,
+                                            color: Colors.black),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(25),
                                         ),
+                                        floatingLabelBehavior:
+                                            FloatingLabelBehavior.always,
                                       ),
+                                    ),
+                                    SizedBox(height: h * 0.03),
+                                  ],
+                                ),
+                              ),
+                        imageArray.length == 0
+                            ? Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child:
+                                Column(
+                                  children: [
+                                    imageArray.length == 0
+                                        ? SizedBox(height: h * 0.03)
+                                        : SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.camera_outlined,
+                                          color: AppColors.buttonColor,
+                                          size: 30,
+                                        ),
+                                        SizedBox(width: w * 0.08),
+                                        Expanded(
+                                            child: Text(
+                                                "Add photos from your library or capture with your camera.",
+                                                style: infoStyle()))
+                                      ],
+                                    ),
+                                    SizedBox(height: h * 0.06),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.move_down_outlined,
+                                          color: AppColors.buttonColor,
+                                          size: 30,
+                                        ),
+                                        SizedBox(width: w * 0.08),
+                                        Expanded(
+                                            child: Text(
+                                                "Arrange your photos in your desired order",
+                                                style: infoStyle()))
+                                      ],
+                                    ),
+                                    SizedBox(height: h * 0.06),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.keyboard_voice_rounded,
+                                          color: AppColors.buttonColor,
+                                          size: 30,
+                                        ),
+                                        SizedBox(width: w * 0.08),
+                                        Expanded(
+                                            child: Text(
+                                                "Add recordings to each photo",
+                                                style: infoStyle()))
+                                      ],
                                     ),
                                   ],
                                 ),
-                      SizedBox(height: h * 0.05),
-                      gridView(),
-                      SizedBox(height: h * 0.15),
+                              )
+                            : imageArray.length == 0 || imageArray.length >= 6
+                                ? Container()
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Add photos",
+                                          style: buttonWorkSansHeading()),
+                                      SizedBox(width: 10),
+                                      InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: ((builder) => bottomSheet()),
+                                          );
+                                        },
+                                        child: const CircleAvatar(
+                                          backgroundColor: AppColors.buttonColor,
+                                          radius: 20,
+                                          child: Icon(
+                                            Icons.add_a_photo_outlined,
+                                            color: Colors.white,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                        SizedBox(height: h * 0.05),
+                        gridView(),
+                        SizedBox(height: h * 0.15),
 
-                      imageArray.length >= 6 || imageArray.length != 0
-                          ? Container()
-                          : CommonButton(
-                              title: "Add photos",
-                              buttonMethod: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: ((builder) => bottomSheet()),
-                                );
-                              },
-                              borderRad: 25,
-                              loading: false,
-                              w: w,
-                              h: h * 0.07,
-                            ),
-                      SizedBox(height: h * 0.15),
-                      imageArray.length == 0
-                          ? Container()
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                IgnorePointer(
-                                  ignoring: _startClicked,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        if (!_formKey.currentState.validate()) {
-                                          "";
-                                        } else {
-                                          Common().showCommonSnackbar(
-                                              context: context,
-                                              msg: " Work in progress");
-                                        }
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              AppColors.buttonColor,
-                                          // maximumSize: Size(w*0.5, h*0.08),
-                                          // minimumSize: Size(w*0.5, h*0.07),
-                                          elevation: 8,
-                                          shadowColor: Colors.black,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25))),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Wrap(children: <Widget>[
-                                          _startClicked
-                                              ? const CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                )
-                                              : Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      "Start Recording",
-                                                      softWrap: true,
-                                                      style:
-                                                          buttonWorkSansHeading(),
-                                                      maxLines: 1,
-                                                    ),
-                                                    SizedBox(width: 5),
-                                                    Icon(
-                                                      Icons.arrow_forward_ios,
-                                                      size: 18,
-                                                    )
-                                                  ],
-                                                ),
-                                        ]),
-                                      )),
-                                ),
-                              ],
-                            ),
-                      SizedBox(height: h * 0.05),
-                      // Spacer(),
-                    ],
+                        imageArray.length >= 6 || imageArray.length != 0
+                            ? Container()
+                            : CommonButton(
+                                title: "Add photos",
+                                buttonMethod: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: ((builder) => bottomSheet()),
+                                  );
+                                },
+                                borderRad: 25,
+                                loading: false,
+                                w: w,
+                                h: h * 0.07,
+                              ),
+                        SizedBox(height: h * 0.15),
+                        imageArray.length == 0
+                            ? Container()
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  IgnorePointer(
+                                    ignoring: _startClicked,
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          if (!_formKey.currentState.validate()) {
+                                            "";
+                                          } else {
+                                            Common().showCommonSnackbar(
+                                                context: context,
+                                                msg: " Work in progress");
+                                          }
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                AppColors.buttonColor,
+                                            // maximumSize: Size(w*0.5, h*0.08),
+                                            // minimumSize: Size(w*0.5, h*0.07),
+                                            elevation: 8,
+                                            shadowColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Wrap(children: <Widget>[
+                                            _startClicked
+                                                ? const CircularProgressIndicator(
+                                                    color: Colors.white,
+                                                  )
+                                                : Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    children: [
+                                                      Text(
+                                                        "Start Recording",
+                                                        softWrap: true,
+                                                        style:
+                                                            buttonWorkSansHeading(),
+                                                        maxLines: 1,
+                                                      ),
+                                                      SizedBox(width: 5),
+                                                      Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        size: 18,
+                                                      )
+                                                    ],
+                                                  ),
+                                          ]),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                        SizedBox(height: h * 0.05),
+                        // Spacer(),
+                      ],
+                    ),
                   ),
                 ),
               )
